@@ -1,0 +1,838 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ali Sohail — Senior Android Developer</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --bg: #060A12; --bg2: #0D1220; --bg3: #141A2B; --card: #111827;
+  --accent: #00D4FF; --accent2: #7C3AED; --accent3: #10B981;
+  --text: #E8EDF5; --muted: #7A8BA8; --border: rgba(255,255,255,0.06);
+  --border2: rgba(0,212,255,0.15); --android: #3DDC84;
+  --font: 'Space Grotesk', sans-serif; --mono: 'JetBrains Mono', monospace;
+}
+html { scroll-behavior: smooth; }
+body { font-family: var(--font); background: var(--bg); color: var(--text); line-height: 1.7; overflow-x: hidden; }
+
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 1rem 5rem; background: rgba(6,10,18,0.92); backdrop-filter: blur(20px);
+  border-bottom: 1px solid var(--border);
+}
+.nav-logo { font-family: var(--mono); font-size: 0.9rem; color: var(--android); display: flex; align-items: center; gap: 0.5rem; }
+.nav-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--android); animation: blink 2s infinite; }
+@keyframes blink { 0%,100%{opacity:1} 50%{opacity:0.25} }
+.nav-links { display: flex; gap: 2rem; list-style: none; }
+.nav-links a { color: var(--muted); text-decoration: none; font-size: 0.8rem; font-weight: 500; letter-spacing: 0.06em; text-transform: uppercase; transition: color 0.2s; }
+.nav-links a:hover { color: var(--accent); }
+
+/* HERO */
+.hero { min-height: 100vh; display: flex; align-items: center; padding: 7rem 5rem 3rem; position: relative; overflow: hidden; gap: 3rem; }
+.hero-dots { position: absolute; inset: 0; pointer-events: none; background-image: radial-gradient(circle, rgba(0,212,255,0.055) 1px, transparent 1px); background-size: 30px 30px; }
+.hero-glow { position: absolute; top: -80px; right: -80px; width: 600px; height: 600px; background: radial-gradient(circle, rgba(124,58,237,0.07) 0%, transparent 65%); pointer-events: none; }
+.hero-glow2 { position: absolute; bottom: 0; left: 0; width: 400px; height: 400px; background: radial-gradient(circle, rgba(0,212,255,0.04) 0%, transparent 65%); pointer-events: none; }
+
+.hero-left { flex: 1; position: relative; z-index: 2; }
+.hero-chip { display: inline-flex; align-items: center; gap: 0.6rem; background: rgba(61,220,132,0.07); border: 1px solid rgba(61,220,132,0.22); color: var(--android); font-family: var(--mono); font-size: 0.72rem; padding: 0.45rem 1rem; border-radius: 6px; margin-bottom: 2rem; }
+.hero h1 { font-size: clamp(2.8rem, 5vw, 4.8rem); font-weight: 700; line-height: 1.06; letter-spacing: -0.03em; margin-bottom: 1rem; }
+.hero h1 .n1 { color: var(--text); display: block; }
+.hero h1 .n2 { color: var(--accent); display: block; }
+.hero-role { font-family: var(--mono); font-size: 0.9rem; color: var(--muted); margin-bottom: 1.4rem; }
+.hero-role em { color: var(--android); font-style: normal; }
+.hero-desc { font-size: 0.97rem; color: var(--muted); max-width: 460px; margin-bottom: 2.2rem; line-height: 1.8; }
+.hero-btns { display: flex; gap: 0.9rem; flex-wrap: wrap; }
+.btn-p { background: var(--accent); color: #060A12; font-weight: 600; font-size: 0.86rem; padding: 0.75rem 1.8rem; border-radius: 10px; text-decoration: none; transition: all 0.2s; font-family: var(--font); }
+.btn-p:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0,212,255,0.28); }
+.btn-g { background: transparent; color: var(--text); font-weight: 500; font-size: 0.86rem; padding: 0.75rem 1.8rem; border-radius: 10px; text-decoration: none; border: 1px solid var(--border2); transition: all 0.2s; font-family: var(--font); }
+.btn-g:hover { background: rgba(0,212,255,0.05); border-color: var(--accent); }
+
+/* PHONE CLUSTER */
+.hero-right { flex-shrink: 0; position: relative; z-index: 2; width: 340px; height: 530px; }
+.phone { position: absolute; background: linear-gradient(150deg, #1A2236, #0E1625); border-radius: 30px; border: 1.5px solid rgba(255,255,255,0.09); box-shadow: 0 25px 70px rgba(0,0,0,0.65), inset 0 1px 0 rgba(255,255,255,0.07); overflow: hidden; display: flex; flex-direction: column; }
+.ph-main { width: 200px; height: 395px; top: 68px; left: 68px; z-index: 3; border-color: rgba(0,212,255,0.15); }
+.ph-bl { width: 175px; height: 350px; top: 22px; left: 0; z-index: 1; transform: rotate(-7deg); opacity: 0.55; border-radius: 26px; }
+.ph-br { width: 175px; height: 350px; top: 40px; right: 0; z-index: 2; transform: rotate(5.5deg); opacity: 0.7; border-radius: 26px; }
+.ph-notch { width: 72px; height: 5px; background: rgba(255,255,255,0.07); border-radius: 0 0 5px 5px; margin: 9px auto 0; flex-shrink: 0; }
+.ph-screen { flex: 1; padding: 8px 9px 6px; display: flex; flex-direction: column; gap: 6px; overflow: hidden; }
+.ph-sbar { display: flex; justify-content: space-between; font-family: var(--mono); font-size: 6.5px; color: rgba(255,255,255,0.4); padding: 0 3px; }
+.ph-header { background: rgba(0,212,255,0.1); border-radius: 8px; padding: 7px 8px; display: flex; align-items: center; gap: 6px; }
+.ph-hicon { width: 20px; height: 20px; border-radius: 6px; background: var(--accent); display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+.ph-hicon svg { width: 10px; height: 10px; fill: #060A12; }
+.ph-htitle { font-size: 7.5px; font-weight: 700; color: var(--text); font-family: var(--mono); }
+.ph-hsub { font-size: 5.5px; color: var(--muted); }
+.ph-card { background: rgba(255,255,255,0.03); border-radius: 7px; padding: 6px 7px; border: 1px solid rgba(255,255,255,0.05); }
+.ph-clabel { font-size: 5.5px; color: var(--muted); font-family: var(--mono); margin-bottom: 5px; letter-spacing: 0.08em; }
+.ph-stats { display: flex; gap: 4px; }
+.ph-stat { flex: 1; background: rgba(0,212,255,0.07); border-radius: 5px; padding: 5px 3px; text-align: center; }
+.ph-sv { font-size: 9.5px; font-weight: 700; color: var(--accent); font-family: var(--mono); }
+.ph-sl { font-size: 4.5px; color: var(--muted); margin-top: 1px; }
+.ph-row { display: flex; align-items: center; gap: 4px; padding: 3.5px 0; border-bottom: 1px solid rgba(255,255,255,0.04); }
+.ph-rdot { width: 5px; height: 5px; border-radius: 50%; flex-shrink: 0; }
+.ph-rt { font-size: 5.5px; color: var(--text); flex: 1; }
+.ph-rv { font-size: 5.5px; color: var(--android); font-family: var(--mono); }
+.ph-prog { margin-top: 2px; }
+.ph-plabel { display: flex; justify-content: space-between; font-size: 5px; color: var(--muted); margin-bottom: 2px; }
+.ph-pbar { height: 2.5px; background: rgba(255,255,255,0.07); border-radius: 2px; }
+.ph-pfill { height: 100%; border-radius: 2px; }
+.ph-bnav { display: flex; justify-content: space-around; padding: 5px 0 7px; border-top: 1px solid rgba(255,255,255,0.05); flex-shrink: 0; }
+.ph-ni { display: flex; flex-direction: column; align-items: center; gap: 2px; }
+.ph-nbar { width: 14px; height: 2px; background: rgba(255,255,255,0.18); border-radius: 1px; }
+.ph-nbar.a { background: var(--accent); }
+.ph-ndot { width: 3px; height: 3px; border-radius: 50%; background: var(--accent); }
+/* back phone simple screens */
+.ph-bscreen { flex: 1; padding: 10px 8px; }
+.ph-bhead { height: 26px; border-radius: 7px; margin-bottom: 7px; }
+.ph-brow { height: 10px; background: rgba(255,255,255,0.04); border-radius: 3px; margin-bottom: 5px; }
+/* floating pills */
+.fbadge { position: absolute; background: var(--bg3); border-radius: 11px; padding: 9px 13px; display: flex; align-items: center; gap: 8px; box-shadow: 0 10px 28px rgba(0,0,0,0.45); z-index: 10; }
+.fbadge1 { bottom: 18px; right: -18px; border: 1px solid rgba(61,220,132,0.25); }
+.fbadge2 { top: 14px; left: -26px; border: 1px solid rgba(124,58,237,0.28); }
+.fbi { width: 30px; height: 30px; border-radius: 8px; display: flex; align-items: center; justify-content: center; }
+.fbv { font-family: var(--mono); font-size: 0.85rem; font-weight: 700; }
+.fbl { font-size: 0.6rem; color: var(--muted); }
+
+/* STATS */
+.statsbar { display: flex; max-width: 960px; margin: 0 auto; padding: 0 5rem 5rem; }
+.si { flex: 1; text-align: center; padding: 1.8rem 1rem; position: relative; }
+.si:not(:last-child)::after { content:''; position:absolute; right:0; top:22%; height:56%; width:1px; background: var(--border); }
+.sn { font-family: var(--mono); font-size: 2.2rem; font-weight: 700; line-height: 1; }
+.sl { font-size: 0.7rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.1em; margin-top: 0.35rem; }
+
+/* SECTIONS */
+.sw { max-width: 1100px; margin: 0 auto; padding: 5rem 5rem; }
+.slabel { font-family: var(--mono); font-size: 0.7rem; color: var(--accent); text-transform: uppercase; letter-spacing: 0.15em; margin-bottom: 0.5rem; }
+.stitle { font-size: clamp(1.8rem, 3vw, 2.3rem); font-weight: 700; letter-spacing: -0.02em; margin-bottom: 0.75rem; }
+.ssub { color: var(--muted); font-size: 0.93rem; max-width: 480px; margin-bottom: 2.8rem; }
+
+/* ABOUT */
+.agrid { display: grid; grid-template-columns: 1fr 1fr; gap: 4.5rem; align-items: start; }
+.atext p { color: var(--muted); font-size: 0.91rem; margin-bottom: 0.9rem; line-height: 1.85; }
+.aquote { margin-top: 1.4rem; padding: 1.1rem 1.4rem; background: rgba(0,212,255,0.04); border-left: 3px solid var(--accent); border-radius: 0 10px 10px 0; }
+.aquote p { color: var(--text); font-style: italic; font-size: 0.87rem; margin: 0; line-height: 1.7; }
+/* code card */
+.codewin { background: #0B1120; border: 1px solid var(--border2); border-radius: 14px; overflow: hidden; box-shadow: 0 18px 55px rgba(0,0,0,0.5); }
+.codetbar { display: flex; align-items: center; gap: 0.45rem; padding: 0.7rem 1rem; background: rgba(255,255,255,0.025); border-bottom: 1px solid var(--border); }
+.cdot { width: 10px; height: 10px; border-radius: 50%; }
+.cfname { font-family: var(--mono); font-size: 0.68rem; color: var(--muted); margin-left: auto; }
+.codebody { padding: 1.1rem 1.4rem; font-family: var(--mono); font-size: 0.73rem; line-height: 1.95; }
+.ckw { color: #C792EA; } .cfn { color: #82AAFF; } .cstr { color: #C3E88D; }
+.cnum { color: #F78C6C; } .ccom { color: #4A6375; font-style: italic; } .ccls { color: #FFCB6B; }
+.cln { color: #2E4050; margin-right: 1.4rem; user-select: none; }
+
+/* TIMELINE */
+.timeline { position: relative; padding-left: 2rem; }
+.timeline::before { content:''; position:absolute; left:7px; top:10px; bottom:0; width:1px; background: linear-gradient(180deg, var(--accent) 0%, transparent 100%); }
+.tli { margin-bottom: 2.2rem; position: relative; }
+.tldot { position:absolute; left:-2rem; top:8px; width:15px; height:15px; border-radius:50%; background:var(--bg2); border:2px solid var(--muted); }
+.tldot.cur { border-color: var(--accent); }
+.tldot.cur::after { content:''; position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); width:6px; height:6px; border-radius:50%; background:var(--accent); }
+.tlcard { background: var(--card); border: 1px solid var(--border); border-radius: 13px; padding: 1.3rem; transition: border-color 0.2s; }
+.tlcard:hover { border-color: var(--border2); }
+.tltop { display:flex; justify-content:space-between; align-items:flex-start; flex-wrap:wrap; gap:0.4rem; margin-bottom:0.35rem; }
+.tltitle { font-weight: 600; font-size: 0.95rem; }
+.tldate { font-family: var(--mono); font-size: 0.7rem; color: var(--muted); background: var(--bg3); padding: 0.22rem 0.65rem; border-radius: 5px; }
+.tlco { font-family: var(--mono); font-size: 0.75rem; color: var(--accent); margin-bottom: 0.75rem; }
+.tlul { list-style: none; }
+.tlul li { color: var(--muted); font-size: 0.84rem; margin-bottom: 0.32rem; padding-left: 1.1rem; position: relative; line-height: 1.6; }
+.tlul li::before { content:'▸'; position:absolute; left:0; color:var(--android); font-size:0.65rem; top:3px; }
+
+/* PROJECTS */
+.pgrid { display: grid; grid-template-columns: repeat(auto-fit, minmax(270px, 1fr)); gap: 1.4rem; }
+.pcard { background: var(--card); border: 1px solid var(--border); border-radius: 15px; overflow: hidden; transition: all 0.25s; }
+.pcard:hover { transform: translateY(-4px); border-color: var(--border2); }
+.pscreen { height: 150px; position: relative; overflow: hidden; display: flex; align-items: center; justify-content: center; gap: 10px; }
+.pscreen.g { background: linear-gradient(135deg, #091F12, #061410); }
+.pscreen.p { background: linear-gradient(135deg, #130A22, #0A0615); }
+.pscreen.b { background: linear-gradient(135deg, #071422, #040D18); }
+.pscreen.a { background: linear-gradient(135deg, #1A1103, #100B02); }
+/* mini phones in project cards */
+.mphone { width: 62px; height: 115px; background: #182030; border-radius: 13px; border: 1.5px solid rgba(255,255,255,0.1); overflow: hidden; display: flex; flex-direction: column; box-shadow: 0 8px 24px rgba(0,0,0,0.5); }
+.mphone.tilt-l { transform: rotate(-7deg); opacity: 0.65; }
+.mphone.tilt-r { transform: rotate(6deg); opacity: 0.72; }
+.mnotch { width: 26px; height: 3.5px; background: rgba(255,255,255,0.06); border-radius: 0 0 3px 3px; margin: 3.5px auto 0; }
+.mscreen { flex: 1; padding: 4px; display: flex; flex-direction: column; gap: 3px; }
+.mr { height: 5px; background: rgba(255,255,255,0.06); border-radius: 2px; }
+.mr.a { background: rgba(0,212,255,0.28); } .mr.g { background: rgba(61,220,132,0.28); }
+.mr.p { background: rgba(124,58,237,0.28); } .mr.am { background: rgba(251,191,36,0.28); }
+.mr.w8 { width: 80%; } .mr.w6 { width: 60%; } .mr.w9 { width: 90%; } .mr.w5 { width: 50%; }
+.mblock { height: 26px; background: rgba(255,255,255,0.04); border-radius: 4px; border: 1px solid rgba(255,255,255,0.06); margin: 2px 0; }
+.picon { position: absolute; bottom: 10px; right: 12px; width: 32px; height: 32px; border-radius: 9px; display: flex; align-items: center; justify-content: center; font-size: 0.95rem; }
+.pbody { padding: 1.15rem; }
+.pname { font-weight: 700; font-size: 0.97rem; margin-bottom: 0.22rem; }
+.pperiod { font-family: var(--mono); font-size: 0.68rem; color: var(--muted); margin-bottom: 0.6rem; }
+.pdesc { color: var(--muted); font-size: 0.81rem; line-height: 1.65; margin-bottom: 0.9rem; }
+.ptags { display: flex; flex-wrap: wrap; gap: 0.3rem; }
+.tag { font-size: 0.67rem; padding: 0.2rem 0.55rem; border-radius: 5px; font-weight: 500; font-family: var(--mono); }
+.tb { background: rgba(0,212,255,0.07); color: var(--accent); border: 1px solid rgba(0,212,255,0.14); }
+.tg { background: rgba(61,220,132,0.07); color: var(--android); border: 1px solid rgba(61,220,132,0.14); }
+.tp { background: rgba(124,58,237,0.09); color: #A78BFA; border: 1px solid rgba(124,58,237,0.18); }
+.ta { background: rgba(251,191,36,0.07); color: #FCD34D; border: 1px solid rgba(251,191,36,0.14); }
+
+/* SKILLS */
+.skgrid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.2rem; }
+.skgroup { background: var(--card); border: 1px solid var(--border); border-radius: 13px; padding: 1.3rem; }
+.sktitle { font-family: var(--mono); font-size: 0.68rem; color: var(--accent); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 0.9rem; display: flex; align-items: center; gap: 0.5rem; }
+.sktitle::before { content:''; width: 3px; height: 11px; background: var(--accent); border-radius: 2px; }
+.skpills { display: flex; flex-wrap: wrap; gap: 0.45rem; }
+.pill { font-size: 0.78rem; padding: 0.28rem 0.75rem; border-radius: 7px; background: var(--bg3); color: var(--text); border: 1px solid var(--border); }
+
+/* CONTACT */
+.ctxt { text-align: center; }
+.cemail { font-family: var(--mono); font-size: 1.2rem; color: var(--accent); display: inline-block; margin: 1.4rem 0 2rem; text-decoration: none; }
+.cemail:hover { text-decoration: underline; }
+.clinks { display: flex; justify-content: center; gap: 0.9rem; flex-wrap: wrap; }
+.clink { display: flex; align-items: center; gap: 0.55rem; background: var(--card); border: 1px solid var(--border); border-radius: 9px; padding: 0.75rem 1.3rem; color: var(--text); text-decoration: none; font-size: 0.83rem; font-weight: 500; transition: all 0.2s; }
+.clink:hover { border-color: var(--border2); color: var(--accent); }
+.clink svg { width: 15px; height: 15px; fill: currentColor; }
+
+footer { text-align: center; padding: 2rem; border-top: 1px solid var(--border); }
+footer p { font-family: var(--mono); font-size: 0.7rem; color: var(--muted); }
+
+/* ── FADE IN ── */
+.fade-in { opacity: 0; transform: translateY(18px); transition: opacity 0.6s ease, transform 0.6s ease; }
+.fade-in.visible { opacity: 1; transform: none; }
+
+/* ── PHONE FLOAT ── */
+.hero-right { animation: phoneFloat 5s ease-in-out infinite; }
+@keyframes phoneFloat {
+  0%,100% { transform: translateY(0px); }
+  50% { transform: translateY(-14px); }
+}
+
+/* ── PHONE GLOW PULSE ── */
+.ph-main { animation: phoneGlow 3.5s ease-in-out infinite; }
+@keyframes phoneGlow {
+  0%,100% { box-shadow: 0 25px 70px rgba(0,0,0,0.65), 0 0 0 0 rgba(0,212,255,0); }
+  50% { box-shadow: 0 25px 70px rgba(0,0,0,0.65), 0 0 35px 4px rgba(0,212,255,0.14); }
+}
+
+/* ── BADGE FLOAT ── */
+.fbadge1 { animation: badge1float 4s ease-in-out infinite; }
+.fbadge2 { animation: badge2float 4.5s ease-in-out infinite 0.8s; }
+@keyframes badge1float { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-7px)} }
+@keyframes badge2float { 0%,100%{transform:translateY(0)} 50%{transform:translateY(6px)} }
+
+/* ── HERO CHIP SHIMMER ── */
+.hero-chip { position: relative; overflow: hidden; }
+.hero-chip::after {
+  content: '';
+  position: absolute; top: 0; left: -100%; width: 60%; height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(61,220,132,0.25), transparent);
+  animation: chipShimmer 3.5s ease-in-out infinite 1s;
+}
+@keyframes chipShimmer { 0%{left:-100%} 40%,100%{left:160%} }
+
+/* ── NAV DOT PULSE ── */
+.nav-dot { animation: navPulse 2s ease-in-out infinite; }
+@keyframes navPulse {
+  0%,100%{box-shadow:0 0 0 0 rgba(61,220,132,0.5)}
+  50%{box-shadow:0 0 0 5px rgba(61,220,132,0)}
+}
+
+/* ── STAGGER CHILDREN ── */
+.pgrid .pcard { opacity: 0; transform: translateY(28px); transition: opacity 0.55s ease, transform 0.55s ease, border-color 0.25s, box-shadow 0.25s; }
+.pgrid.visible .pcard:nth-child(1) { opacity:1; transform:none; transition-delay:0s; }
+.pgrid.visible .pcard:nth-child(2) { opacity:1; transform:none; transition-delay:0.13s; }
+.pgrid.visible .pcard:nth-child(3) { opacity:1; transform:none; transition-delay:0.26s; }
+.pgrid.visible .pcard:nth-child(4) { opacity:1; transform:none; transition-delay:0.39s; }
+
+.skgrid .skgroup { opacity: 0; transform: translateY(22px); transition: opacity 0.5s ease, transform 0.5s ease; }
+.skgrid.visible .skgroup:nth-child(1){opacity:1;transform:none;transition-delay:0s}
+.skgrid.visible .skgroup:nth-child(2){opacity:1;transform:none;transition-delay:0.08s}
+.skgrid.visible .skgroup:nth-child(3){opacity:1;transform:none;transition-delay:0.16s}
+.skgrid.visible .skgroup:nth-child(4){opacity:1;transform:none;transition-delay:0.24s}
+.skgrid.visible .skgroup:nth-child(5){opacity:1;transform:none;transition-delay:0.32s}
+.skgrid.visible .skgroup:nth-child(6){opacity:1;transform:none;transition-delay:0.4s}
+
+.timeline .tli { opacity: 0; transform: translateX(-18px); transition: opacity 0.55s ease, transform 0.55s ease; }
+.timeline.visible .tli:nth-child(1){opacity:1;transform:none;transition-delay:0s}
+.timeline.visible .tli:nth-child(2){opacity:1;transform:none;transition-delay:0.15s}
+.timeline.visible .tli:nth-child(3){opacity:1;transform:none;transition-delay:0.3s}
+.timeline.visible .tli:nth-child(4){opacity:1;transform:none;transition-delay:0.45s}
+
+/* ── STAT NUMBER COUNT-UP ── */
+.sn { transition: color 0.3s; }
+
+/* ── SCAN LINE on phone ── */
+.ph-main::after {
+  content: '';
+  position: absolute; left: 0; right: 0; top: -100%;
+  height: 40px;
+  background: linear-gradient(180deg, transparent, rgba(0,212,255,0.06), transparent);
+  animation: scanLine 4s linear infinite 1.5s;
+  pointer-events: none; z-index: 20;
+}
+@keyframes scanLine { 0%{top:-20%} 100%{top:120%} }
+
+/* ── TYPING CURSOR in code ── */
+.typing-cursor {
+  display: inline-block; width: 2px; height: 0.9em;
+  background: var(--accent); vertical-align: middle;
+  animation: cursorBlink 1s step-end infinite;
+  margin-left: 2px;
+}
+@keyframes cursorBlink { 0%,100%{opacity:1} 50%{opacity:0} }
+
+/* ── PROGRESS BAR ANIMATE ── */
+.ph-pfill { width: 0 !important; transition: width 1.8s cubic-bezier(0.22,1,0.36,1); }
+.ph-pfill.animated { width: var(--target-w) !important; }
+
+/* ── PARTICLE CANVAS ── */
+#particles { position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 0; opacity: 0.45; }
+
+/* ── GLITCH on H1 hover ── */
+.hero h1:hover .n2 { animation: glitch 0.4s linear; }
+@keyframes glitch {
+  0%{clip-path:none;transform:none}
+  20%{clip-path:polygon(0 20%,100% 20%,100% 40%,0 40%);transform:translate(-3px,0)}
+  40%{clip-path:polygon(0 60%,100% 60%,100% 80%,0 80%);transform:translate(3px,0)}
+  60%{clip-path:polygon(0 10%,100% 10%,100% 30%,0 30%);transform:translate(-2px,0)}
+  80%{clip-path:none;transform:translate(2px,0)}
+  100%{clip-path:none;transform:none}
+}
+
+/* ── CARD HOVER GLOW ── */
+.tlcard:hover { box-shadow: 0 6px 28px rgba(0,212,255,0.07); }
+.pcard:hover { box-shadow: 0 12px 40px rgba(0,212,255,0.1); }
+.skgroup:hover { border-color: rgba(0,212,255,0.2); background: rgba(0,212,255,0.02); transition: all 0.25s; }
+
+/* ── PILL POP on hover ── */
+.pill { transition: transform 0.15s, background 0.2s, border-color 0.2s; cursor: default; }
+.pill:hover { transform: scale(1.08); background: rgba(0,212,255,0.08); border-color: rgba(0,212,255,0.25); }
+
+/* ── CONTACT LINK SLIDE ── */
+.clink { position: relative; overflow: hidden; }
+.clink::before {
+  content: ''; position: absolute; left: 0; bottom: 0; height: 2px; width: 0;
+  background: var(--accent); transition: width 0.3s ease;
+}
+.clink:hover::before { width: 100%; }
+
+/* ── STATS BAR ENTRANCE ── */
+.statsbar .si { opacity: 0; transform: translateY(16px); }
+.statsbar.visible .si:nth-child(1){animation:statPop 0.5s ease forwards 0s}
+.statsbar.visible .si:nth-child(2){animation:statPop 0.5s ease forwards 0.12s}
+.statsbar.visible .si:nth-child(3){animation:statPop 0.5s ease forwards 0.24s}
+.statsbar.visible .si:nth-child(4){animation:statPop 0.5s ease forwards 0.36s}
+@keyframes statPop {
+  0%{opacity:0;transform:translateY(16px) scale(0.92)}
+  60%{opacity:1;transform:translateY(-4px) scale(1.03)}
+  100%{opacity:1;transform:translateY(0) scale(1)}
+}
+
+/* ── SECTION LABEL TYPEWRITER ── */
+.slabel { overflow: hidden; white-space: nowrap; }
+.slabel.typed { animation: typeIn 0.7s steps(22,end) forwards; }
+@keyframes typeIn { from{width:0} to{width:100%} }
+
+@media (max-width: 860px) {
+  nav { padding: 1rem 1.5rem; } .nav-links { display: none; }
+  .hero { flex-direction: column; padding: 6rem 1.5rem 2.5rem; }
+  .hero-right { display: none; }
+  .statsbar, .sw { padding-left: 1.5rem; padding-right: 1.5rem; }
+  .agrid { grid-template-columns: 1fr; gap: 2rem; }
+}
+</style>
+</head>
+<body>
+
+<canvas id="particles"></canvas>
+<nav>
+  <div class="nav-logo"><div class="nav-dot"></div>ali.sohail()</div>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-dots"></div>
+  <div class="hero-glow"></div>
+  <div class="hero-glow2"></div>
+
+  <div class="hero-left fade-in">
+    <div class="hero-chip">
+      <svg width="13" height="13" viewBox="0 0 24 24"><path d="M6 18c0 .55.45 1 1 1h1v3.5c0 .83.67 1.5 1.5 1.5s1.5-.67 1.5-1.5V19h2v3.5c0 .83.67 1.5 1.5 1.5s1.5-.67 1.5-1.5V19h1c.55 0 1-.45 1-1V8H6v10zM3.5 8C2.67 8 2 8.67 2 9.5v7c0 .83.67 1.5 1.5 1.5S5 17.33 5 16.5v-7C5 8.67 4.33 8 3.5 8zm17 0c-.83 0-1.5.67-1.5 1.5v7c0 .83.67 1.5 1.5 1.5s1.5-.67 1.5-1.5v-7c0-.83-.67-1.5-1.5-1.5zm-4.97-5.84l1.3-1.3c.2-.2.2-.51 0-.71-.2-.2-.51-.2-.71 0l-1.48 1.48C14.15 1.23 13.1 1 12 1c-1.1 0-2.15.23-3.1.63L7.42.15c-.2-.2-.51-.2-.71 0-.2.2-.2.51 0 .71l1.31 1.31C6.01 3.07 4.62 5.14 4.5 7.5L4 8h16l-.5-.5c-.12-2.36-1.51-4.43-3.97-5.34zM10 5H9V4h1v1zm5 0h-1V4h1v1z"/></svg>
+      Senior Android Developer &nbsp;·&nbsp; Open to opportunities
+    </div>
+    <h1><span class="n1">Ali</span><span class="n2">Sohail</span></h1>
+    <div class="hero-role">Senior Software Engineer <em>// 5+ years</em></div>
+    <p class="hero-desc">Building high-performance Android apps from zero to scale — 180+ crashes eliminated, complex features shipped, and teams led from junior dev to engineering lead.</p>
+    <div class="hero-btns">
+      <a href="#projects" class="btn-p">View Projects</a>
+      <a href="#contact" class="btn-g">Get in Touch</a>
+    </div>
+  </div>
+
+  <!-- PHONES -->
+  <div class="hero-right fade-in">
+    <!-- back left -->
+    <div class="phone ph-bl">
+      <div class="ph-notch"></div>
+      <div class="ph-bscreen">
+        <div class="ph-bhead" style="background:rgba(0,212,255,0.1)"></div>
+        <div class="ph-brow" style="width:88%"></div>
+        <div class="ph-brow" style="width:70%"></div>
+        <div class="ph-brow" style="width:80%"></div>
+        <div class="ph-brow" style="width:60%"></div>
+        <div class="ph-brow" style="width:90%"></div>
+      </div>
+    </div>
+    <!-- back right -->
+    <div class="phone ph-br">
+      <div class="ph-notch"></div>
+      <div class="ph-bscreen">
+        <div class="ph-bhead" style="background:rgba(124,58,237,0.12)"></div>
+        <div class="ph-brow" style="width:75%"></div>
+        <div class="ph-brow" style="width:90%"></div>
+        <div class="ph-brow" style="width:55%"></div>
+      </div>
+    </div>
+    <!-- main phone -->
+    <div class="phone ph-main">
+      <div class="ph-notch"></div>
+      <div class="ph-screen">
+        <div class="ph-sbar"><span>9:41</span><span>●●● 5G</span></div>
+        <div class="ph-header">
+          <div class="ph-hicon"><svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 14.5v-9l6 4.5-6 4.5z"/></svg></div>
+          <div><div class="ph-htitle">SINJAB</div><div class="ph-hsub">Multi-Sport Platform</div></div>
+        </div>
+        <div class="ph-card">
+          <div class="ph-clabel">LIVE STATS</div>
+          <div class="ph-stats">
+            <div class="ph-stat"><div class="ph-sv">0</div><div class="ph-sl">Crashes</div></div>
+            <div class="ph-stat"><div class="ph-sv">3</div><div class="ph-sl">Gateways</div></div>
+            <div class="ph-stat"><div class="ph-sv">5+</div><div class="ph-sl">Apps</div></div>
+          </div>
+        </div>
+        <div class="ph-card">
+          <div class="ph-clabel">FEATURES</div>
+          <div class="ph-row"><div class="ph-rdot" style="background:#3DDC84"></div><div class="ph-rt">Court Booking</div><div class="ph-rv">✓</div></div>
+          <div class="ph-row"><div class="ph-rdot" style="background:#00D4FF"></div><div class="ph-rt">Tournaments</div><div class="ph-rv">✓</div></div>
+          <div class="ph-row"><div class="ph-rdot" style="background:#A78BFA"></div><div class="ph-rt">E-Commerce</div><div class="ph-rv">✓</div></div>
+          <div class="ph-row" style="border:none"><div class="ph-rdot" style="background:#FCD34D"></div><div class="ph-rt">Community</div><div class="ph-rv">✓</div></div>
+        </div>
+        <div class="ph-card">
+          <div class="ph-prog">
+            <div class="ph-plabel"><span>Kotlin</span><span>95%</span></div>
+            <div class="ph-pbar"><div class="ph-pfill" style="--target-w:95%;background:linear-gradient(90deg,#00D4FF,#7C3AED)"></div></div>
+          </div>
+          <div class="ph-prog" style="margin-top:5px">
+            <div class="ph-plabel"><span>MVVM</span><span>90%</span></div>
+            <div class="ph-pbar"><div class="ph-pfill" style="--target-w:90%;background:linear-gradient(90deg,#3DDC84,#00D4FF)"></div></div>
+          </div>
+        </div>
+      </div>
+      <div class="ph-bnav">
+        <div class="ph-ni"><div class="ph-nbar a"></div><div class="ph-ndot"></div></div>
+        <div class="ph-ni"><div class="ph-nbar"></div></div>
+        <div class="ph-ni"><div class="ph-nbar"></div></div>
+        <div class="ph-ni"><div class="ph-nbar"></div></div>
+      </div>
+    </div>
+    <!-- badges -->
+    <div class="fbadge fbadge1">
+      <div class="fbi" style="background:rgba(61,220,132,0.12)"><svg width="15" height="15" viewBox="0 0 24 24" fill="#3DDC84"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg></div>
+      <div><div class="fbv" style="color:#3DDC84">180 → 0</div><div class="fbl">Crashes fixed</div></div>
+    </div>
+    <div class="fbadge fbadge2">
+      <div class="fbi" style="background:rgba(124,58,237,0.12)"><svg width="15" height="15" viewBox="0 0 24 24" fill="#A78BFA"><path d="M17 12h-5v5h5v-5zM16 1v2H8V1H6v2H5c-1.11 0-1.99.9-1.99 2L3 19c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2h-1V1h-2zm3 18H5V8h14v11z"/></svg></div>
+      <div><div class="fbv" style="color:#A78BFA">3 Apps</div><div class="fbl">Zofeur ecosystem</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- STATS -->
+<div class="statsbar fade-in">
+  <div class="si"><div class="sn" style="color:var(--accent)">5+</div><div class="sl">Years Experience</div></div>
+  <div class="si"><div class="sn" style="color:var(--android)">180→0</div><div class="sl">Crashes Eliminated</div></div>
+  <div class="si"><div class="sn" style="color:var(--accent)">6+</div><div class="sl">Apps Shipped</div></div>
+  <div class="si"><div class="sn" style="color:#A78BFA">3</div><div class="sl">Payment Gateways</div></div>
+</div>
+
+<!-- ABOUT -->
+<section id="about">
+<div class="sw fade-in">
+  <div class="slabel">// about.kt</div>
+  <div class="agrid">
+    <div class="atext">
+      <h2 class="stitle">Turning lines of code into apps people rely on.</h2>
+      <p>I'm a Senior Android Developer based in Karachi, Pakistan. I started at Next Generations Innovations as a junior engineer and — as the sole Android developer — built SINJAB from a simple Padel court booking app into a full multi-sport community platform.</p>
+      <p>I care deeply about architecture, performance, and writing code that doesn't just work today but scales tomorrow. I've taken apps from broken to bulletproof and from MVP to enterprise-grade.</p>
+      <div class="aquote"><p>"Joined as a junior dev. Left as the Android lead after reducing 180+ production crashes to zero and rebuilding the entire codebase."</p></div>
+    </div>
+    <div class="codewin">
+      <div class="codetbar">
+        <div class="cdot" style="background:#FF5F57"></div>
+        <div class="cdot" style="background:#FFBD2E"></div>
+        <div class="cdot" style="background:#28CA42"></div>
+        <span class="cfname">AliSohail.kt</span>
+      </div>
+      <div class="codebody">
+<span class="cln">1</span><span class="ckw">class</span> <span class="ccls">AliSohail</span> : <span class="ccls">AndroidDeveloper</span> {<br>
+<span class="cln">2</span><br>
+<span class="cln">3</span>&nbsp;&nbsp;<span class="ckw">val</span> <span class="cfn">experience</span> = <span class="cstr">"5+ years"</span><br>
+<span class="cln">4</span>&nbsp;&nbsp;<span class="ckw">val</span> <span class="cfn">location</span> = <span class="cstr">"Karachi, PK"</span><br>
+<span class="cln">5</span>&nbsp;&nbsp;<span class="ckw">val</span> <span class="cfn">crashesFixed</span> = <span class="cnum">180</span> <span class="ccom">// → 0</span><br>
+<span class="cln">6</span><br>
+<span class="cln">7</span>&nbsp;&nbsp;<span class="ckw">val</span> <span class="cfn">stack</span> = listOf(<br>
+<span class="cln">8</span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="cstr">"Kotlin"</span>, <span class="cstr">"MVVM"</span>,<br>
+<span class="cln">9</span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="cstr">"Coroutines"</span>, <span class="cstr">"Retrofit"</span><br>
+<span class="cln">10</span>&nbsp;&nbsp;)<br>
+<span class="cln">11</span><br>
+<span class="cln">12</span>&nbsp;&nbsp;<span class="ckw">fun</span> <span class="cfn">build</span>(): <span class="ccls">HighQualityApp</span> {<br>
+<span class="cln">13</span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="ccom">// clean arch, zero crashes</span><br>
+<span class="cln">14</span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="ckw">return</span> <span class="ccls">HighQualityApp</span>(<br>
+<span class="cln">15</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;crashes = <span class="cnum">0</span>,<br>
+<span class="cln">16</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;rating = <span class="cnum">5.0f</span><br>
+<span class="cln">17</span>&nbsp;&nbsp;&nbsp;&nbsp;)<br>
+<span class="cln">18</span>&nbsp;&nbsp;}<br>
+<span class="cln">19</span>}<span class="typing-cursor"></span>
+      </div>
+    </div>
+  </div>
+</div>
+</section>
+
+<!-- EXPERIENCE -->
+<section id="experience">
+<div class="sw fade-in">
+  <div class="slabel">// experience.xml</div>
+  <h2 class="stitle">Work Experience</h2>
+  <p class="ssub">Junior engineer to Android lead — a story of ownership and impact.</p>
+  <div class="timeline">
+    <div class="tli">
+      <div class="tldot cur"></div>
+      <div class="tlcard">
+        <div class="tltop"><div class="tltitle">Applications Engineer II</div><div class="tldate">Feb 2025 – Aug 2025</div></div>
+        <div class="tlco">Next Generations Innovations — SINJAB &amp; Zofeur · Karachi</div>
+        <ul class="tlul">
+          <li>Served as Android Engineering Lead for SINJAB, a multi-sport court booking and community platform</li>
+          <li>Led architecture decisions, code reviews, and sprint planning for the Android team</li>
+          <li>Mentored junior developers and established coding standards and best practices</li>
+          <li>Android development on Zofeur — a premium chauffeur ride-hailing platform with 3 apps: Zofeur, Zofeur Black, and the Driver app</li>
+          <li>Designed and implemented the Events feature, enabling users to book rides for scheduled events</li>
+          <li>Integrated Ghost Car functionality for real-time vehicle tracking and improved dispatching</li>
+          <li>Integrated Zendesk SDK with custom UI theming for in-app customer support across all three apps</li>
+        </ul>
+      </div>
+    </div>
+    <div class="tli">
+      <div class="tldot"></div>
+      <div class="tlcard">
+        <div class="tltop"><div class="tltitle">Applications Junior Engineer → Android Lead</div><div class="tldate">Mar 2022 – Feb 2025</div></div>
+        <div class="tlco">Next Generations Innovations — SINJAB Project · Karachi</div>
+        <ul class="tlul">
+          <li>Joined as Junior Engineer on SINJAB (Padel court booking app), rapidly progressed to independently owning the entire Android codebase</li>
+          <li>Reduced Firebase crash count from 180+ to zero through systematic debugging and code stabilization</li>
+          <li>Led complete Android revamp — overhauled architecture, optimized API calls, improved performance</li>
+          <li>Delivered features: Training &amp; Coaching, Multi-Sport, Community feed, Tournaments, Academies, E-commerce</li>
+          <li>Integrated Stripe, PayTabs, and HyperPay payment gateways with full end-to-end testing</li>
+          <li>Integrated Zendesk and Intercom SDKs; implemented multi-language (i18n) support</li>
+          <li>Promoted to Applications Engineer II in Feb 2025 for technical leadership and impact</li>
+        </ul>
+      </div>
+    </div>
+    <div class="tli">
+      <div class="tldot"></div>
+      <div class="tlcard">
+        <div class="tltop"><div class="tltitle">Associate Software Engineer</div><div class="tldate">Mar 2021 – Feb 2022</div></div>
+        <div class="tlco">EvolutionWing · Karachi</div>
+        <ul class="tlul"><li>Android development, debugging, and performance optimization</li></ul>
+      </div>
+    </div>
+    <div class="tli">
+      <div class="tldot"></div>
+      <div class="tlcard">
+        <div class="tltop"><div class="tltitle">Android Intern</div><div class="tldate">Jul 2020 – Sep 2020</div></div>
+        <div class="tlco">Keenu (Fintech) · Karachi</div>
+        <ul class="tlul"><li>Developed and tested Android features within a fintech mobile application</li></ul>
+      </div>
+    </div>
+  </div>
+</div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects">
+<div class="sw fade-in">
+  <div class="slabel">// projects.gradle</div>
+  <h2 class="stitle">Featured Projects</h2>
+  <p class="ssub">Apps I've built, led, and scaled in production.</p>
+  <div class="pgrid">
+
+    <div class="pcard">
+      <div class="pscreen g">
+        <div class="mphone tilt-l">
+          <div class="mnotch"></div>
+          <div class="mscreen"><div class="mr g w9"></div><div class="mblock"></div><div class="mr g w6"></div><div class="mr w8"></div></div>
+        </div>
+        <div class="mphone">
+          <div class="mnotch"></div>
+          <div class="mscreen"><div class="mr a w9"></div><div class="mblock"></div><div class="mr g w5"></div><div class="mr w8"></div><div class="mr g w6"></div></div>
+        </div>
+        <div class="picon" style="background:rgba(61,220,132,0.12);border:1px solid rgba(61,220,132,0.25)">🏸</div>
+      </div>
+      <div class="pbody">
+        <div class="pname">SINJAB</div>
+        <div class="pperiod">Mar 2022 – Aug 2025</div>
+        <div class="pdesc">Padel court booking → full multi-sport platform. Solo dev 3 yrs → Android lead. 180+ Firebase crashes reduced to zero. Complete codebase revamp.</div>
+        <div class="ptags">
+          <span class="tag tb">Kotlin</span><span class="tag tb">MVVM</span><span class="tag tg">Stripe</span><span class="tag tg">PayTabs</span><span class="tag tg">HyperPay</span><span class="tag ta">Zendesk</span><span class="tag ta">Intercom</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="pcard">
+      <div class="pscreen p">
+        <div class="mphone tilt-l">
+          <div class="mnotch"></div>
+          <div class="mscreen"><div class="mr p w8"></div><div class="mblock" style="border-color:rgba(124,58,237,0.15)"></div><div class="mr p w5"></div></div>
+        </div>
+        <div class="mphone">
+          <div class="mnotch"></div>
+          <div class="mscreen"><div class="mr p w9"></div><div class="mblock" style="border-color:rgba(124,58,237,0.15)"></div><div class="mr w7"></div><div class="mr p w6"></div></div>
+        </div>
+        <div class="mphone tilt-r">
+          <div class="mnotch"></div>
+          <div class="mscreen"><div class="mr w8"></div><div class="mr p w6"></div><div class="mblock" style="border-color:rgba(124,58,237,0.1)"></div></div>
+        </div>
+        <div class="picon" style="background:rgba(124,58,237,0.12);border:1px solid rgba(124,58,237,0.25)">🚗</div>
+      </div>
+      <div class="pbody">
+        <div class="pname">Zofeur</div>
+        <div class="pperiod">Feb 2025 – Aug 2025</div>
+        <div class="pdesc">Premium chauffeur ride-hailing — 3-app ecosystem: Zofeur, Zofeur Black (premium), and Driver app. Events feature, Ghost Car tracking, Zendesk SDK.</div>
+        <div class="ptags">
+          <span class="tag tb">Kotlin</span><span class="tag tp">3 Apps</span><span class="tag ta">Zendesk</span><span class="tag tb">GPS Tracking</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="pcard">
+      <div class="pscreen b">
+        <div class="mphone">
+          <div class="mnotch"></div>
+          <div class="mscreen"><div class="mr a w9"></div><div class="mblock"></div><div class="mr w6"></div><div class="mr a w7"></div></div>
+        </div>
+        <div class="picon" style="background:rgba(0,212,255,0.09);border:1px solid rgba(0,212,255,0.2)">🏥</div>
+      </div>
+      <div class="pbody">
+        <div class="pname">iSeha &amp; GOGALLON</div>
+        <div class="pperiod">Previous Engagement</div>
+        <div class="pdesc">Android development for iSeha (healthcare platform) and GOGALLON — building and maintaining mobile features across both products.</div>
+        <div class="ptags"><span class="tag tb">Kotlin</span><span class="tag tb">Java</span><span class="tag tb">Android SDK</span></div>
+      </div>
+    </div>
+
+    <div class="pcard">
+      <div class="pscreen a">
+        <div class="mphone">
+          <div class="mnotch"></div>
+          <div class="mscreen"><div class="mr am w9"></div><div class="mblock" style="border-color:rgba(251,191,36,0.1)"></div><div class="mr am w5"></div><div class="mr w8"></div></div>
+        </div>
+        <div class="picon" style="background:rgba(251,191,36,0.09);border:1px solid rgba(251,191,36,0.2)">⚡</div>
+      </div>
+      <div class="pbody">
+        <div class="pname">Siro</div>
+        <div class="pperiod">2024 · 2-week concurrent sprint</div>
+        <div class="pdesc">Android development handled concurrently alongside leading SINJAB — rapid context-switching and parallel delivery under tight timelines.</div>
+        <div class="ptags"><span class="tag tb">Kotlin</span><span class="tag ta">Concurrent</span></div>
+      </div>
+    </div>
+
+  </div>
+</div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills">
+<div class="sw fade-in">
+  <div class="slabel">// build.gradle.kts</div>
+  <h2 class="stitle">Technical Skills</h2>
+  <p class="ssub">The stack I ship with.</p>
+  <div class="skgrid">
+    <div class="skgroup"><div class="sktitle">Languages</div><div class="skpills"><span class="pill">Kotlin</span><span class="pill">Java</span><span class="pill">Swift (basic)</span></div></div>
+    <div class="skgroup"><div class="sktitle">Architecture</div><div class="skpills"><span class="pill">MVVM</span><span class="pill">MVC</span><span class="pill">Clean Architecture</span></div></div>
+    <div class="skgroup"><div class="sktitle">Android</div><div class="skpills"><span class="pill">Android SDK</span><span class="pill">Jetpack</span><span class="pill">Coroutines</span><span class="pill">RxJava</span><span class="pill">Retrofit</span><span class="pill">Material Design</span><span class="pill">LiveData/ViewModel</span></div></div>
+    <div class="skgroup"><div class="sktitle">Integrations</div><div class="skpills"><span class="pill">Stripe SDK</span><span class="pill">PayTabs</span><span class="pill">HyperPay</span><span class="pill">Zendesk</span><span class="pill">Intercom</span><span class="pill">Google Maps</span><span class="pill">GPS Tracking</span></div></div>
+    <div class="skgroup"><div class="sktitle">Tools &amp; Practices</div><div class="skpills"><span class="pill">Git</span><span class="pill">Firebase</span><span class="pill">Android Studio</span><span class="pill">Agile/Scrum</span><span class="pill">Code Review</span><span class="pill">CI/CD</span></div></div>
+    <div class="skgroup"><div class="sktitle">Other</div><div class="skpills"><span class="pill">Dependency Injection</span><span class="pill">i18n</span><span class="pill">Performance Opt.</span><span class="pill">White-label Apps</span><span class="pill">REST APIs</span></div></div>
+  </div>
+</div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+<div class="sw fade-in">
+  <div class="slabel">// contact.kt</div>
+  <div class="ctxt">
+    <h2 class="stitle">Let's Build Something.</h2>
+    <p style="color:var(--muted);max-width:400px;margin:0.7rem auto 0;font-size:0.9rem;">Open to new roles, collabs, or just a conversation about Android. I respond fast.</p>
+    <a href="mailto:m.alisohail.1998@gmail.com" class="cemail">m.alisohail.1998@gmail.com</a>
+    <div class="clinks">
+      <a href="https://linkedin.com/in/asohail16" target="_blank" class="clink">
+        <svg viewBox="0 0 24 24"><path d="M19 3a2 2 0 012 2v14a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h14m-.5 15.5v-5.3a3.26 3.26 0 00-3.26-3.26c-.85 0-1.84.52-2.32 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 011.4 1.4v4.93h2.79M6.88 8.56a1.68 1.68 0 001.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 00-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z"/></svg>
+        LinkedIn
+      </a>
+      <a href="https://github.com/asohail16" target="_blank" class="clink">
+        <svg viewBox="0 0 24 24"><path d="M12 2A10 10 0 002 12c0 4.42 2.87 8.17 6.84 9.5.5.08.66-.23.66-.5v-1.69c-2.77.6-3.36-1.34-3.36-1.34-.46-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.87 1.52 2.34 1.07 2.91.83.09-.65.35-1.09.63-1.34-2.22-.25-4.55-1.11-4.55-4.92 0-1.11.38-2 1.03-2.71-.1-.25-.45-1.29.1-2.64 0 0 .84-.27 2.75 1.02.79-.22 1.65-.33 2.5-.33.85 0 1.71.11 2.5.33 1.91-1.29 2.75-1.02 2.75-1.02.55 1.35.2 2.39.1 2.64.65.71 1.03 1.6 1.03 2.71 0 3.82-2.34 4.66-4.57 4.91.36.31.69.92.69 1.85V21c0 .27.16.59.67.5C19.14 20.16 22 16.42 22 12A10 10 0 0012 2z"/></svg>
+        GitHub
+      </a>
+      <a href="https://medium.com/@m.alisohail.1998" target="_blank" class="clink">
+        <svg viewBox="0 0 24 24"><path d="M13.54 12a6.8 6.8 0 01-6.77 6.82A6.8 6.8 0 010 12a6.8 6.8 0 016.77-6.82A6.8 6.8 0 0113.54 12zM20.96 12c0 3.54-1.51 6.42-3.38 6.42-1.87 0-3.39-2.88-3.39-6.42s1.52-6.42 3.39-6.42 3.38 2.88 3.38 6.42M24 12c0 3.17-.53 5.75-1.19 5.75-.66 0-1.19-2.58-1.19-5.75s.53-5.75 1.19-5.75C23.47 6.25 24 8.83 24 12z"/></svg>
+        Medium
+      </a>
+      <a href="tel:+923405251321" class="clink">
+        <svg viewBox="0 0 24 24"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
+        +92 340 525 1321
+      </a>
+    </div>
+  </div>
+</div>
+</section>
+
+<footer><p>Ali Sohail · Senior Android Developer · Karachi, Pakistan · Built with Kotlin ♥</p></footer>
+
+<script>
+/* ── PARTICLES ── */
+const canvas = document.getElementById('particles');
+const ctx = canvas.getContext('2d');
+let W, H, pts = [];
+
+function resize() {
+  W = canvas.width = window.innerWidth;
+  H = canvas.height = window.innerHeight;
+}
+resize();
+window.addEventListener('resize', () => { resize(); initPts(); });
+
+function initPts() {
+  pts = Array.from({length: 55}, () => ({
+    x: Math.random() * W, y: Math.random() * H,
+    vx: (Math.random() - 0.5) * 0.35,
+    vy: (Math.random() - 0.5) * 0.35,
+    r: Math.random() * 1.5 + 0.4,
+    a: Math.random() * 0.5 + 0.1
+  }));
+}
+initPts();
+
+function drawPts() {
+  ctx.clearRect(0, 0, W, H);
+  for (let i = 0; i < pts.length; i++) {
+    const p = pts[i];
+    p.x += p.vx; p.y += p.vy;
+    if (p.x < 0 || p.x > W) p.vx *= -1;
+    if (p.y < 0 || p.y > H) p.vy *= -1;
+    ctx.beginPath();
+    ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+    ctx.fillStyle = `rgba(0,212,255,${p.a})`;
+    ctx.fill();
+    for (let j = i + 1; j < pts.length; j++) {
+      const q = pts[j];
+      const d = Math.hypot(p.x - q.x, p.y - q.y);
+      if (d < 130) {
+        ctx.beginPath();
+        ctx.moveTo(p.x, p.y); ctx.lineTo(q.x, q.y);
+        ctx.strokeStyle = `rgba(0,212,255,${0.07 * (1 - d / 130)})`;
+        ctx.lineWidth = 0.6;
+        ctx.stroke();
+      }
+    }
+  }
+  requestAnimationFrame(drawPts);
+}
+drawPts();
+
+/* ── INTERSECTION OBSERVER ── */
+const io = new IntersectionObserver(e => e.forEach(x => {
+  if (!x.isIntersecting) return;
+  const el = x.target;
+  el.classList.add('visible');
+
+  // stagger grids
+  if (el.classList.contains('pgrid') || el.classList.contains('skgrid') ||
+      el.classList.contains('timeline') || el.classList.contains('statsbar')) {
+    el.classList.add('visible');
+  }
+
+  // typewriter on slabels
+  if (el.classList.contains('slabel')) el.classList.add('typed');
+
+  // progress bars
+  el.querySelectorAll('.ph-pfill').forEach(bar => {
+    setTimeout(() => bar.classList.add('animated'), 400);
+  });
+
+  // count-up for stats
+  if (el.classList.contains('statsbar')) {
+    el.querySelectorAll('.sn').forEach(sn => {
+      const raw = sn.textContent.trim();
+      const num = parseInt(raw.replace(/\D/g, ''));
+      if (!isNaN(num) && num > 1) {
+        let cur = 0; const steps = 40;
+        const timer = setInterval(() => {
+          cur += Math.ceil(num / steps);
+          if (cur >= num) { cur = num; clearInterval(timer); }
+          sn.textContent = raw.replace(/\d+/, cur);
+        }, 35);
+      }
+    });
+  }
+
+  io.unobserve(el);
+}), {threshold: 0.12});
+
+document.querySelectorAll('.fade-in, .pgrid, .skgrid, .timeline, .statsbar, .slabel').forEach(el => io.observe(el));
+
+/* ── SMOOTH NAV HIGHLIGHT ── */
+const sections = document.querySelectorAll('section[id], div[id]');
+const navAs = document.querySelectorAll('.nav-links a');
+window.addEventListener('scroll', () => {
+  let cur = '';
+  sections.forEach(s => { if (window.scrollY >= s.offsetTop - 160) cur = s.id; });
+  navAs.forEach(a => {
+    a.style.color = a.getAttribute('href') === '#' + cur ? 'var(--accent)' : '';
+  });
+}, {passive: true});
+
+/* ── CURSOR GLOW TRAIL ── */
+const trail = document.createElement('div');
+trail.style.cssText = `position:fixed;width:220px;height:220px;border-radius:50%;
+  background:radial-gradient(circle,rgba(0,212,255,0.055) 0%,transparent 70%);
+  pointer-events:none;z-index:9999;transform:translate(-50%,-50%);
+  transition:left 0.18s ease,top 0.18s ease;left:-300px;top:-300px;`;
+document.body.appendChild(trail);
+document.addEventListener('mousemove', e => {
+  trail.style.left = e.clientX + 'px';
+  trail.style.top = e.clientY + 'px';
+});
+
+/* ── HERO ENTRANCE SEQUENCE ── */
+window.addEventListener('load', () => {
+  const heroLeft = document.querySelector('.hero-left');
+  const heroRight = document.querySelector('.hero-right');
+  if (heroLeft) { heroLeft.style.opacity='0'; heroLeft.style.transform='translateY(24px)'; }
+  if (heroRight) { heroRight.style.opacity='0'; heroRight.style.transform='translateX(24px)'; }
+  setTimeout(() => {
+    if (heroLeft) { heroLeft.style.transition='opacity 0.8s ease, transform 0.8s ease'; heroLeft.style.opacity='1'; heroLeft.style.transform='none'; }
+  }, 100);
+  setTimeout(() => {
+    if (heroRight) { heroRight.style.transition='opacity 0.9s ease, transform 0.9s ease'; heroRight.style.opacity='1'; heroRight.style.transform='none'; }
+  }, 380);
+  // trigger statsbar on load if visible
+  const sb = document.querySelector('.statsbar');
+  if (sb) io.observe(sb);
+});
+</script>
+</body>
+</html>
